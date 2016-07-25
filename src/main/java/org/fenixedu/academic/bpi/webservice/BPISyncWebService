@@ -1,0 +1,44 @@
+package org.fenixedu.academic.bpi.webservice;
+
+import com.qubit.solution.fenixedu.bennu.webservices.services.server.BennuWebService;
+import org.fenixedu.academic.domain.Person;
+import org.fenixedu.academic.domain.person.Gender;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+import java.util.Locale;
+
+@WebService
+public class BPISyncWebService extends BennuWebService {
+
+    @WebMethod
+    public BPISyncBean getUser(String fiscalCode){
+        Person person = (Person) Person.readByContributorNumber(fiscalCode);
+
+        char gender = person.getGender() == Gender.MALE? 'M': 'F';
+
+
+        BPISyncBean bean = new BPISyncBean();
+        bean.setFiscal(person.getSocialSecurityNumber());
+        bean.setPhone(person.getDefaultPhoneNumber());
+        bean.setEmail(person.getDefaultEmailAddressValue());
+        bean.setName(person.getName());
+        bean.setGender(gender);
+        bean.setNationality(person.getCountry().getThreeLetterCode().toCharArray());
+        bean.setDateOfBirth(person.getDateOfBirthYearMonthDay().toString("YYMMDD"));
+        bean.setIdDocumentNumber(person.getDocumentIdNumber());
+        bean.setIdDocumentValidity(person.getExpirationDateOfDocumentIdYearMonthDay().toString("YYMMDD"));
+        bean.setPlaceOfBirth(person.getCountryOfBirth().getThreeLetterCode().toCharArray());
+        bean.setDistrict(person.getDistrictOfResidence());
+        bean.setCounty(person.getDistrictSubdivisionOfResidence());
+        bean.setBorough(person.getParishOfResidence());
+        bean.setZipCode(person.getPostalCode());
+        bean.setDegree("");
+        bean.setDegreeType("");
+        bean.setId(person.getUsername());
+        bean.setEnrolmentAgreement(new byte[0]);
+
+        return bean;
+    }
+}
