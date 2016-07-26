@@ -17,10 +17,12 @@ public class BPISyncBean implements Serializable{
     private String idDocument;
     private String idDocumentValidity;
     private char[] placeOfBirth;
+    private String address;
     private String district;
     private String county;
     private String borough;
     private String zipCode;
+    private String streetLayoutCode;
     private String degreeType;
     private String degree;
 
@@ -119,7 +121,7 @@ public class BPISyncBean implements Serializable{
         this.id = id;
     }
 
-    public String getIdDocument() {
+    public String getIdDocumentNumber() {
         return idDocument;
     }
 
@@ -173,5 +175,21 @@ public class BPISyncBean implements Serializable{
 
     public void setDegreeType(String degreeType) {
         this.degreeType = degreeType;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getStreetLayoutCode() {
+        return streetLayoutCode;
+    }
+
+    public void setStreetLayoutCode(String streetLayoutCode) {
+        this.streetLayoutCode = streetLayoutCode;
     }
 }

@@ -9,9 +9,9 @@
     <version>2.3.0</version>
   </parent>
 
-  <groupId>pt.ist</groupId>
-  <artifactId>fenixedu-bpi</artifactId>
-  <version>1.0.0</version>
+    <groupId>org.fenixedu</groupId>
+    <artifactId>fenixedu-bpi</artifactId>
+    <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>BPI Integration</name>
@@ -19,6 +19,7 @@
   <properties>
     <version.org.fenixedu.bennu>3.4.1</version.org.fenixedu.bennu>
     <version.org.fenixedu.academic>5.3.0</version.org.fenixedu.academic>
+    <version.pt.ist.fenixedu.ist>7.6.0</version.pt.ist.fenixedu.ist>
     <version.org.fenixedu.bennu.spring>1.2.0</version.org.fenixedu.bennu.spring>
     <version.com.qubit.solution.fenixedu.bennu-webservices-core>1.0.0.CONTRIB</version.com.qubit.solution.fenixedu.bennu-webservices-core>
   </properties>
@@ -42,6 +43,11 @@
       <groupId>org.fenixedu</groupId>
       <artifactId>bennu-spring</artifactId>
       <version>${version.org.fenixedu.bennu.spring}</version>
+    </dependency>
+    <dependency>
+      <groupId>pt.ist</groupId>
+      <artifactId>fenixedu-ist-integration</artifactId>
+      <version>${version.pt.ist.fenixedu.ist}</version>
     </dependency>
   </dependencies>
 

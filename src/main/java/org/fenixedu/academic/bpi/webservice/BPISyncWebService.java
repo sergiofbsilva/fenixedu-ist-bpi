@@ -7,6 +7,7 @@ import org.fenixedu.academic.domain.Degree;
 import org.fenixedu.academic.domain.Person;
 import org.fenixedu.academic.domain.person.Gender;
 import org.fenixedu.academic.domain.student.Registration;
+import org.fenixedu.bennu.core.domain.Bennu;
 import org.joda.time.Period;
 import org.joda.time.YearMonthDay;
 
@@ -19,15 +20,23 @@ import java.util.Locale;
 public class BPISyncWebService extends BennuWebService {
 
     @WebMethod
-    public BPISyncBean getUser(String fiscalCode){
+    public BPISyncBean getUser(String fiscalCode) throws BPISyncException{
         Person person = (Person) Person.readByContributorNumber(fiscalCode);
+
+        if(person == null){
+            throw new BPISyncException("User not found");
+        }
 
         char gender = person.getGender() == Gender.MALE? 'M': 'F';
 
         Period age = new Period(person.getDateOfBirthYearMonthDay(), new YearMonthDay());
 
         if (age.getYears() < 18){
-            throw new RuntimeException("User is underage");
+            throw new BPISyncException("User is underage");
+        }
+
+        if(person.getUser().getBpiCard() == null || !person.getUser().getBpiCard().getAllowSendDetails()){
+            throw new BPISyncException("User does not allow to see details");
         }
 
         Degree degree = person.getStudent().getLastRegistration().getDegree();
@@ -43,10 +52,22 @@ public class BPISyncWebService extends BennuWebService {
         bean.setIdDocumentNumber(person.getDocumentIdNumber());
         bean.setIdDocumentValidity(person.getExpirationDateOfDocumentIdYearMonthDay().toString("YYMMDD"));
         bean.setPlaceOfBirth(person.getCountryOfBirth().getThreeLetterCode().toCharArray());
+        bean.setAddress(person.getAddress());
         bean.setDistrict(person.getDistrictOfResidence());
         bean.setCounty(person.getDistrictSubdivisionOfResidence());
         bean.setBorough(person.getParishOfResidence());
-        bean.setZipCode(person.getPostalCode());
+
+        String postalCode = person.getDefaultPhysicalAddress().getAreaCode();
+        if (postalCode.contains("-")){
+
+            String[] codes = postalCode.split("-");
+            bean.setZipCode(codes[0]);
+            bean.setStreetLayoutCode(codes[1]);
+        }else{
+            bean.setZipCode(postalCode);
+            bean.setStreetLayoutCode("");
+        }
+
         bean.setDegree(degree.getDegreeType().isBolonhaMasterDegree()?"Mestrado":"Licenciatura");
         bean.setDegreeType(degree.getPresentationNameI18N().getContent(new Locale("pt-PT")));
         bean.setId(person.getUsername());
