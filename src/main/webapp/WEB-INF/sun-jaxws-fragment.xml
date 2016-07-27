@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
            version="2.0">
-    <endpoint name="bpiIntegration" implementation="org.fenixedu.academic.bpi.webservice.BPISyncWebService"
+    <endpoint name="bpiIntegration" implementation="pt.ist.fenixedu.bpi.webservice.BPISyncWebService"
               url-pattern="/web-services/bpiIntegration" />
 </endpoints>

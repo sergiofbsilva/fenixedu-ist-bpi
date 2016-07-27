@@ -1,8 +1,8 @@
-package org.fenixedu.academic.bpi;
+package pt.ist.fenixedu.bpi;
 
-import org.fenixedu.academic.bpi.webservice.BPISyncException_Exception;
-import org.fenixedu.academic.bpi.webservice.BPISyncWebServiceService;
-import org.fenixedu.academic.bpi.webservice.BpiSyncBean;
+import pt.ist.fenixedu.bpi.webservice.BPISyncException_Exception;
+import pt.ist.fenixedu.bpi.webservice.BPISyncWebServiceService;
+import pt.ist.fenixedu.bpi.webservice.BpiSyncBean;
 
 import java.util.Scanner;
 

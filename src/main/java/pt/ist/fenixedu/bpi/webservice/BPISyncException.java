@@ -1,4 +1,4 @@
-package org.fenixedu.academic.bpi.webservice;
+package pt.ist.fenixedu.bpi.webservice;
 
 import java.io.Serializable;
 

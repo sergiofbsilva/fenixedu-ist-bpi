@@ -1,20 +1,19 @@
-package org.fenixedu.academic.bpi.webservice;
+package pt.ist.fenixedu.bpi.webservice;
 
-import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServiceConfiguration;
-import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServiceServerConfiguration;
-import com.qubit.solution.fenixedu.bennu.webservices.services.server.BennuWebService;
-import org.fenixedu.academic.domain.Degree;
-import org.fenixedu.academic.domain.Person;
-import org.fenixedu.academic.domain.person.Gender;
-import org.fenixedu.academic.domain.student.Registration;
-import org.fenixedu.bennu.core.domain.Bennu;
-import org.joda.time.Period;
-import org.joda.time.YearMonthDay;
+import java.util.Locale;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import java.util.Locale;
+import org.fenixedu.academic.domain.Degree;
+import org.fenixedu.academic.domain.Person;
+import org.fenixedu.academic.domain.person.Gender;
+import org.joda.time.Period;
+import org.joda.time.YearMonthDay;
+
+import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServiceConfiguration;
+import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServiceServerConfiguration;
+import com.qubit.solution.fenixedu.bennu.webservices.services.server.BennuWebService;
 
 @WebService
 public class BPISyncWebService extends BennuWebService {

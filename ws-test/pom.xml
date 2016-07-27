@@ -4,7 +4,7 @@
   http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pt.ist</groupId>
-  <artifactId>fenixedu-bpi-test</artifactId>
+  <artifactId>fenixedu-ist-bpi-test</artifactId>
   <packaging>jar</packaging>
   <version>1.0.0-SNAPSHOT</version>
   
@@ -49,7 +49,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>org.fenixedu.academic.bpi.Test</mainClass>
+          <mainClass>pt.ist.fenixedu.bpi.Test</mainClass>
         </configuration>
       </plugin>
     </plugins>
