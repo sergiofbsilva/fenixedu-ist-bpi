@@ -29,7 +29,7 @@ public class BPISyncWebService extends BennuWebService {
             throw new BPISyncException("User not found");
         }
 
-        char gender = person.getGender() == Gender.MALE? 'M': 'F';
+        String gender = person.getGender() == Gender.MALE? "M": "F";
 
         Period age = new Period(person.getDateOfBirthYearMonthDay(), new YearMonthDay());
 

@@ -10,7 +10,7 @@ public class BPISyncBean implements Serializable{
     private String phone;
     private String email;
     private String name;
-    private char gender;
+    private String gender;
 
     private String nationality;
     private String dateOfBirth;
@@ -105,11 +105,11 @@ public class BPISyncBean implements Serializable{
         this.fiscal = fiscal;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
