@@ -6,6 +6,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import org.fenixedu.academic.domain.Degree;
+import org.fenixedu.academic.domain.ExecutionYear;
 import org.fenixedu.academic.domain.Person;
 import org.fenixedu.academic.domain.person.Gender;
 import org.joda.time.Period;
@@ -17,6 +18,8 @@ import com.qubit.solution.fenixedu.bennu.webservices.services.server.BennuWebSer
 
 @WebService
 public class BPISyncWebService extends BennuWebService {
+
+    private static final String DATE_FORMAT = "YYMMdd";
 
     @WebMethod
     public BPISyncBean getUser(String fiscalCode) throws BPISyncException{
@@ -46,11 +49,11 @@ public class BPISyncWebService extends BennuWebService {
         bean.setEmail(person.getDefaultEmailAddressValue());
         bean.setName(person.getName());
         bean.setGender(gender);
-        bean.setNationality(person.getCountry().getThreeLetterCode().toCharArray());
-        bean.setDateOfBirth(person.getDateOfBirthYearMonthDay().toString("YYMMDD"));
+        bean.setNationality(person.getCountry().getThreeLetterCode());
+        bean.setDateOfBirth(person.getDateOfBirthYearMonthDay().toString(DATE_FORMAT));
         bean.setIdDocumentNumber(person.getDocumentIdNumber());
-        bean.setIdDocumentValidity(person.getExpirationDateOfDocumentIdYearMonthDay().toString("YYMMDD"));
-        bean.setPlaceOfBirth(person.getCountryOfBirth().getThreeLetterCode().toCharArray());
+        bean.setIdDocumentValidity(person.getExpirationDateOfDocumentIdYearMonthDay().toString(DATE_FORMAT));
+        bean.setPlaceOfBirth(person.getCountryOfBirth().getThreeLetterCode());
         bean.setAddress(person.getAddress());
         bean.setDistrict(person.getDistrictOfResidence());
         bean.setCounty(person.getDistrictSubdivisionOfResidence());
@@ -67,8 +70,8 @@ public class BPISyncWebService extends BennuWebService {
             bean.setStreetLayoutCode("");
         }
 
-        bean.setDegree(degree.getDegreeType().isBolonhaMasterDegree()?"Mestrado":"Licenciatura");
-        bean.setDegreeType(degree.getPresentationNameI18N().getContent(new Locale("pt-PT")));
+        bean.setDegreeType(degree.getDegreeType().getName().getContent(new Locale("pt-PT")));
+        bean.setDegree(degree.getFilteredName(ExecutionYear.readCurrentExecutionYear(), new Locale("pt-PT")));
         bean.setId(person.getUsername());
         bean.setEnrolmentAgreement(new byte[0]);
 

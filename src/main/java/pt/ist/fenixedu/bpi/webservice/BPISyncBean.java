@@ -12,11 +12,11 @@ public class BPISyncBean implements Serializable{
     private String name;
     private char gender;
 
-    private char[] nationality;
+    private String nationality;
     private String dateOfBirth;
     private String idDocument;
     private String idDocumentValidity;
-    private char[] placeOfBirth;
+    private String placeOfBirth;
     private String address;
     private String district;
     private String county;
@@ -145,19 +145,19 @@ public class BPISyncBean implements Serializable{
         this.name = name;
     }
 
-    public char[] getNationality() {
+    public String getNationality() {
         return nationality;
     }
 
-    public void setNationality(char[] nationality) {
+    public void setNationality(String nationality) {
         this.nationality = nationality;
     }
 
-    public char[] getPlaceOfBirth() {
+    public String getPlaceOfBirth() {
         return placeOfBirth;
     }
 
-    public void setPlaceOfBirth(char[] placeOfBirth) {
+    public void setPlaceOfBirth(String placeOfBirth) {
         this.placeOfBirth = placeOfBirth;
     }
 
