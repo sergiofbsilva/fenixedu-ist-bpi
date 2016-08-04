@@ -19,7 +19,7 @@ import com.qubit.solution.fenixedu.bennu.webservices.services.server.BennuWebSer
 @WebService
 public class BPISyncWebService extends BennuWebService {
 
-    private static final String DATE_FORMAT = "YYMMdd";
+    private static final String DATE_FORMAT = "yyyyMMdd";
 
     @WebMethod
     public BPISyncBean getUser(String fiscalCode) throws BPISyncException{
