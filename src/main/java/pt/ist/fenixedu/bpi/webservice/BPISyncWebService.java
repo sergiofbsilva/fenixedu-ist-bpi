@@ -1,5 +1,8 @@
 package pt.ist.fenixedu.bpi.webservice;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Locale;
 
 import javax.jws.WebMethod;
@@ -73,9 +76,18 @@ public class BPISyncWebService extends BennuWebService {
         bean.setDegreeType(degree.getDegreeType().getName().getContent(new Locale("pt-PT")));
         bean.setDegree(degree.getFilteredName(ExecutionYear.readCurrentExecutionYear(), new Locale("pt-PT")));
         bean.setId(person.getUsername());
-        bean.setEnrolmentAgreement(new byte[0]);
+        bean.setEnrolmentAgreement(enrolmentAgreement());
 
         return bean;
+    }
+
+    private byte[] enrolmentAgreement() {
+        final File file = new File("/afs/ist.utl.pt/ciist/fenix/fenix015/ist/declaracao_matricula_exemplo.pdf");
+        try {
+            return Files.readAllBytes(file.toPath());
+        } catch (final IOException e) {
+            throw new Error(e);
+        }
     }
 
     public static boolean validate(final String username, final String password) {
