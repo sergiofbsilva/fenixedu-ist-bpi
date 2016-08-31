@@ -1,10 +1,13 @@
 package pt.ist.fenixedu.bpi;
 
 import pt.ist.fenixedu.bpi.webservice.BPISyncException_Exception;
+import pt.ist.fenixedu.bpi.webservice.BPISyncWebService;
 import pt.ist.fenixedu.bpi.webservice.BPISyncWebServiceService;
 import pt.ist.fenixedu.bpi.webservice.BpiSyncBean;
 
-import java.util.Scanner;
+import javax.xml.ws.BindingProvider;
+import javax.xml.ws.handler.MessageContext;
+import java.util.*;
 
 /**
  * Created by nurv on 26/07/16.
@@ -15,8 +18,19 @@ public class Test {
 
         System.out.println("Enter Username:");
         String username=scanner.next();
+        BPISyncWebService port = new BPISyncWebServiceService().getBPISyncWebServicePort();
 
-        BpiSyncBean bean = new BPISyncWebServiceService().getBPISyncWebServicePort().getUser(username);
+
+        /*******************UserName & Password ******************************/
+        Map<String, Object> req_ctx = ((BindingProvider)port).getRequestContext();
+
+        Map<String, List<String>> headers = new HashMap<String, List<String>>();
+        headers.put("authorization", Collections.singletonList("Basic " + Base64.getEncoder().encodeToString("user:pass".getBytes())));
+        req_ctx.put(MessageContext.HTTP_REQUEST_HEADERS, headers);
+
+        /**********************************************************************/
+
+        BpiSyncBean bean = port.getUser(username);
 
         System.out.println(bean.getFiscal());
         System.out.println(bean.getPhone());
