@@ -5,17 +5,29 @@ import pt.ist.fenixedu.bpi.webservice.BPISyncWebService;
 import pt.ist.fenixedu.bpi.webservice.BPISyncWebServiceService;
 import pt.ist.fenixedu.bpi.webservice.BpiSyncBean;
 
+<<<<<<< HEAD
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.handler.MessageContext;
 import java.util.*;
+=======
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+>>>>>>> 09712ab... Integrated actual registration declaration file; Added converter to tiff service
+
+import com.google.common.io.Files;
 
 /**
  * Created by nurv on 26/07/16.
  */
 public class Test {
-    public static void main(String ... args) throws BPISyncException_Exception {
+    public static void main(String ... args) throws BPISyncException_Exception, IOException {
         Scanner scanner = new Scanner(System.in);
-
+        System.setProperty("com.sun.xml.ws.transport.http.client.HttpTransportPipe.dump", "true");
+        System.setProperty("com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.dump", "true");
+        System.setProperty("com.sun.xml.ws.transport.http.HttpAdapter.dump", "true");
+        System.setProperty("com.sun.xml.internal.ws.transport.http.HttpAdapter.dump", "true");
+        
         System.out.println("Enter Username:");
         String username=scanner.next();
         BPISyncWebService port = new BPISyncWebServiceService().getBPISyncWebServicePort();
@@ -51,6 +63,8 @@ public class Test {
         System.out.println(bean.getDegree());
         System.out.println(bean.getDegreeType());
         System.out.println(bean.getId());
-        System.out.println(bean.getEnrolmentAgreement());
+        File f = File.createTempFile("cenas", "fanfas");
+        Files.write(bean.getEnrolmentAgreement(), f);
+        System.out.println(f.getAbsolutePath());
     }
 }
