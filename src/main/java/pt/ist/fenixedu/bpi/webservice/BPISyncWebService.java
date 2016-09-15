@@ -74,11 +74,11 @@ public class BPISyncWebService extends BennuWebService {
         bean.setIdDocumentNumber(person.getDocumentIdNumber());
         bean.setIdDocumentValidity(person.getExpirationDateOfDocumentIdYearMonthDay().toString(DATE_FORMAT));
         bean.setPlaceOfBirth(person.getCountryOfBirth().getThreeLetterCode());
-        bean.setAddress(person.getAddress());
-        bean.setDistrict(person.getDistrictOfResidence());
-        bean.setCounty(person.getDistrictSubdivisionOfResidence());
-        bean.setBorough(person.getParishOfResidence());
+        bean.setDistrict(person.getDistrictOfBirth());
+        bean.setCounty(person.getDistrictSubdivisionOfBirth());
+        bean.setBorough(person.getParishOfBirth());
 
+        bean.setAddress(person.getAddress());
         String postalCode = person.getDefaultPhysicalAddress().getAreaCode();
         if (postalCode.contains("-")) {
 
