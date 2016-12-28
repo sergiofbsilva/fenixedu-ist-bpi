@@ -6,7 +6,8 @@
 	<parent>
 		<groupId>org.fenixedu</groupId>
 		<artifactId>fenix-framework-project</artifactId>
-		<version>2.3.0</version>
+		<version>2.4.0</version>
+		<relativePath />
 	</parent>
 
 	<groupId>pt.ist</groupId>
@@ -24,12 +25,11 @@
     </scm>
     
 	<properties>
-		<version.org.fenixedu.bennu>3.4.1</version.org.fenixedu.bennu>
-		<version.org.fenixedu.academic>5.3.0</version.org.fenixedu.academic>
-		<version.pt.ist.fenixedu.ist>8.1.0</version.pt.ist.fenixedu.ist>
-		<version.org.fenixedu.bennu.spring>1.2.0</version.org.fenixedu.bennu.spring>
 		<version.com.qubit.solution.fenixedu.bennu-webservices-core>1.0.0.CONTRIB</version.com.qubit.solution.fenixedu.bennu-webservices-core>
-		<version.org.glassfish.jersey>2.17</version.org.glassfish.jersey>
+		<version.org.fenixedu.academic>6.0.0</version.org.fenixedu.academic>
+		<version.org.fenixedu.bennu>4.1.0</version.org.fenixedu.bennu>
+		<version.org.glassfish.jersey>2.25</version.org.glassfish.jersey>
+		<version.pt.ist.fenixedu.ist>9.0.0</version.pt.ist.fenixedu.ist>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>org.fenixedu</groupId>
 			<artifactId>bennu-spring</artifactId>
-			<version>${version.org.fenixedu.bennu.spring}</version>
+			<version>${version.org.fenixedu.bennu}</version>
 		</dependency>
 		<dependency>
 			<groupId>pt.ist</groupId>
