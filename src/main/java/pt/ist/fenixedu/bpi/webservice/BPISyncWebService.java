@@ -1,6 +1,7 @@
 package pt.ist.fenixedu.bpi.webservice;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
 
 import javax.jws.WebMethod;
@@ -16,6 +17,7 @@ import org.fenixedu.academic.domain.Person;
 import org.fenixedu.academic.domain.person.Gender;
 import org.fenixedu.academic.domain.student.Student;
 import org.fenixedu.bennu.BPIIntegrationConfiguration;
+import org.fenixedu.bennu.BennuSpringContextHelper;
 import org.fenixedu.bennu.core.rest.JsonBodyReaderWriter;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
@@ -27,6 +29,7 @@ import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServic
 import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServiceServerConfiguration;
 import com.qubit.solution.fenixedu.bennu.webservices.services.server.BennuWebService;
 
+import pt.ist.fenixedu.integration.ui.spring.service.RegistrationDeclarationForBanksService;
 import pt.ist.registration.process.domain.RegistrationDeclarationFile;
 
 @WebService
@@ -100,9 +103,14 @@ public class BPISyncWebService extends BennuWebService {
 
     private byte[] getRegistrationDeclaration(Person person) {
         Student student = person.getStudent();
-        RegistrationDeclarationFile registrationDeclarationFile = student.getLastRegistration().getRegistrationDeclarationFile();
+        RegistrationDeclarationForBanksService registrationDeclarationForBanksService = BennuSpringContextHelper.getBean
+        (RegistrationDeclarationForBanksService.class);
+
+        InputStream registrationDeclarationFileForBanks =
+                registrationDeclarationForBanksService.getRegistrationDeclarationFileForBanks(student.getLastRegistration());
+
         final StreamDataBodyPart streamDataBodyPart = new StreamDataBodyPart("file",
-                registrationDeclarationFile.getStream(), registrationDeclarationFile.getFilename(), new MediaType("application", "pdf"));
+                registrationDeclarationFileForBanks, "declaracao.pdf", new MediaType("application", "pdf"));
         try (final FormDataMultiPart formDataMultiPart = new FormDataMultiPart()) {
             formDataMultiPart.bodyPart(streamDataBodyPart);
             return this.client.target(BPIIntegrationConfiguration.getConfiguration().converterUrl())
