@@ -60,7 +60,7 @@ public class BPISyncWebService extends BennuWebService {
             throw new BPISyncException("User is underage");
         }
 
-        if (person.getUser().getBpiCard() == null || !person.getUser().getBpiCard().getAllowSendDetails()) {
+        if (person.getUser().getBpiCard() == null || !person.getUser().getBpiCard().getAllowSendBankDetails()) {
             throw new BPISyncException("User does not allow to see details");
         }
 
