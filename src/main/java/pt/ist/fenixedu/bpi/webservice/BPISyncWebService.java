@@ -47,6 +47,9 @@ public class BPISyncWebService extends BennuWebService {
     @WebMethod
     public BPISyncBean getUser(String fiscalCode) throws BPISyncException {
         Person person = (Person) Person.readByContributorNumber(fiscalCode);
+        if (person == null) {
+            person = (Person) Person.readByContributorNumber("PT" + fiscalCode);
+        }
 
         if (person == null) {
             throw new BPISyncException("User not found");
