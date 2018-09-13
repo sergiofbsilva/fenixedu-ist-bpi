@@ -30,7 +30,6 @@ import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServic
 import com.qubit.solution.fenixedu.bennu.webservices.services.server.BennuWebService;
 
 import pt.ist.fenixedu.integration.ui.spring.service.RegistrationDeclarationForBanksService;
-import pt.ist.registration.process.domain.RegistrationDeclarationFile;
 
 @WebService
 public class BPISyncWebService extends BennuWebService {
@@ -70,7 +69,8 @@ public class BPISyncWebService extends BennuWebService {
         Degree degree = person.getStudent().getLastRegistration().getDegree();
 
         BPISyncBean bean = new BPISyncBean();
-        bean.setFiscal(person.getSocialSecurityNumber());
+        final String uvat = person.getSocialSecurityNumber();
+        bean.setFiscal(uvat == null || uvat.length() < 2 ? uvat : uvat.substring(2));
         bean.setPhone(person.getDefaultPhoneNumber());
         bean.setEmail(person.getDefaultEmailAddressValue());
         bean.setName(person.getName());
