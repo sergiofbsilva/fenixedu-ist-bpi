@@ -24,11 +24,11 @@
     </scm>
     
 	<properties>
-		<version.com.qubit.solution.fenixedu.bennu-webservices-core>1.0.0.CONTRIB</version.com.qubit.solution.fenixedu.bennu-webservices-core>
-		<version.org.fenixedu.academic>7.4.1</version.org.fenixedu.academic>
-		<version.org.fenixedu.bennu>4.1.0</version.org.fenixedu.bennu>
-		<version.org.glassfish.jersey>2.25</version.org.glassfish.jersey>
-		<version.pt.ist.fenixedu.ist>16.1.2</version.pt.ist.fenixedu.ist>
+		<version.com.qubit.solution.fenixedu.bennu-webservices-core>1.0.1-IST</version.com.qubit.solution.fenixedu.bennu-webservices-core>
+		<version.org.fenixedu.academic>20.1.1</version.org.fenixedu.academic>
+		<version.org.fenixedu.bennu>6.1.0</version.org.fenixedu.bennu>
+		<version.org.glassfish.jersey>2.27</version.org.glassfish.jersey>
+		<version.pt.ist.fenixedu.ist>17.3.0</version.pt.ist.fenixedu.ist>
 	</properties>
 	<dependencies>
 		<dependency>

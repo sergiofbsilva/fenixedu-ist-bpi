@@ -17,8 +17,8 @@ import org.fenixedu.academic.domain.Person;
 import org.fenixedu.academic.domain.person.Gender;
 import org.fenixedu.academic.domain.student.Student;
 import org.fenixedu.bennu.BPIIntegrationConfiguration;
-import org.fenixedu.bennu.BennuSpringContextHelper;
 import org.fenixedu.bennu.core.rest.JsonBodyReaderWriter;
+import org.fenixedu.bennu.spring.BennuSpringContextHelper;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.media.multipart.file.StreamDataBodyPart;
@@ -28,7 +28,6 @@ import org.joda.time.YearMonthDay;
 import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServiceConfiguration;
 import com.qubit.solution.fenixedu.bennu.webservices.domain.webservice.WebServiceServerConfiguration;
 import com.qubit.solution.fenixedu.bennu.webservices.services.server.BennuWebService;
-
 import pt.ist.fenixedu.integration.ui.spring.service.RegistrationDeclarationForBanksService;
 
 @WebService
